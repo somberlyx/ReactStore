@@ -1,8 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit'
+import { DEFAULT_ITEMS } from '../data/items';
 
 const itemsSlice = createSlice({
   name: 'items',
-  initialState: [],
+  initialState: DEFAULT_ITEMS,
   reducers: {
     addInitialItems: (store, action) => {
       return store;
@@ -13,3 +14,4 @@ const itemsSlice = createSlice({
 export const itemsAction = itemsSlice.actions;
 
 export default itemsSlice;
+
