@@ -6,7 +6,6 @@ import { fetchStatusAction } from "../store/fetchStatusSlice";
 const FetchItems = () => {
   const fetchStatus = useSelector((store) => store.fetchStatus);
   const dispatch = useDispatch();
-  console.log(fetchStatus);
 
   useEffect(() => {
     if (fetchStatus.fetchDone) {
