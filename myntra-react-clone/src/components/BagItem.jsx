@@ -1,4 +1,14 @@
+import { useDispatch } from "react-redux";
+import { CiCircleRemove } from "react-icons/ci";
+import { bagAction } from "../store/bagSlice";
+
 const BagItem = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveItem = () => {
+    dispatch(bagAction.removeFromBag(item.id));
+  };
+
   return (
     <div className="bag-item-container">
       <div className="item-left-part">
@@ -24,13 +34,8 @@ const BagItem = ({ item }) => {
         </div>
       </div>
 
-      <div
-        className="remove-from-cart"
-        onClick={() => {
-          console.log("Item removed");
-        }}
-      >
-        X
+      <div className="remove-from-cart" onClick={handleRemoveItem}>
+        <CiCircleRemove />
       </div>
     </div>
   );
