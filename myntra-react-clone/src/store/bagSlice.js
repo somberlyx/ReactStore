@@ -4,8 +4,11 @@ const bagSlice = createSlice({
   name: 'items',
   initialState: [],
   reducers: {
-    addInitialItems: (state, action) => {
-      return action.payload;
+    addToBag: (state, action) => {
+      state.push(action.payload)
+    },
+    removeFromBag: (state, action) => {
+     return state.filter(itemId => itemId !== action.payload)
     }
   }
 })
