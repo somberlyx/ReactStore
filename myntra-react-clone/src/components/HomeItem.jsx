@@ -5,11 +5,16 @@ import { IoMdRemove } from "react-icons/io";
 
 const HomeItem = ({ item }) => {
   const dispatch = useDispatch();
-  useSelector();
+  const bagItems = useSelector((store) => store.bag);
+
+  const elementFound = bagItems.indexOf(item.id) >= 0;
 
   const handleAddToBag = () => {
     dispatch(bagAction.addToBag(item.id));
-    console.log("item added");
+  };
+
+  const handleRemove = () => {
+    dispatch(bagAction.removeFromBag(item.id));
   };
 
   return (
@@ -25,12 +30,18 @@ const HomeItem = ({ item }) => {
         <span className="original-price">Rs {item.original_price}</span>
         <span className="discount">({item.discount_percentage}% OFF)</span>
       </div>
-      <button className="btn btn-success btn-add-bag" onClick={handleAddToBag}>
-        Add to Bag <MdOutlineAdd />
-      </button>
-      <button className="btn btn-add-bag btn-danger">
-        Remove from bag <IoMdRemove />
-      </button>
+      {elementFound ? (
+        <button className="btn btn-add-bag btn-danger" onClick={handleRemove}>
+          Remove from bag <IoMdRemove />
+        </button>
+      ) : (
+        <button
+          className="btn btn-success btn-add-bag"
+          onClick={handleAddToBag}
+        >
+          Add to Bag <MdOutlineAdd />
+        </button>
+      )}
     </div>
   );
 };
