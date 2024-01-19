@@ -1,4 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
+import { bagAction } from "../store/BagSlice";
+import { MdOutlineAdd } from "react-icons/md";
+import { IoMdRemove } from "react-icons/io";
+
 const HomeItem = ({ item }) => {
+  const dispatch = useDispatch();
+  useSelector();
+
+  const handleAddToBag = () => {
+    dispatch(bagAction.addToBag(item.id));
+    console.log("item added");
+  };
+
   return (
     <div className="item-container">
       <img className="item-image" src={item.image} alt="item image" />
@@ -12,13 +25,11 @@ const HomeItem = ({ item }) => {
         <span className="original-price">Rs {item.original_price}</span>
         <span className="discount">({item.discount_percentage}% OFF)</span>
       </div>
-      <button
-        className="btn-add-bag"
-        onClick={() => {
-          console.log("item added to bag");
-        }}
-      >
-        Add to Bag
+      <button className="btn btn-success btn-add-bag" onClick={handleAddToBag}>
+        Add to Bag <MdOutlineAdd />
+      </button>
+      <button className="btn btn-add-bag btn-danger">
+        Remove from bag <IoMdRemove />
       </button>
     </div>
   );

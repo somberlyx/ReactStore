@@ -2,8 +2,11 @@ import { CgProfile } from "react-icons/cg";
 import { CgShoppingBag } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const bag = useSelector((store) => store.bag);
+  console.log("bag contains", bag);
   return (
     <header>
       <div className="logo_container">
@@ -46,7 +49,7 @@ const Header = () => {
         <Link to="/bag" className="action_container">
           <CgShoppingBag />
           <span className="action_name">Bag</span>
-          <span className="bag-item-count">0</span>
+          <span className="bag-item-count">{bag.length}</span>
         </Link>
       </div>
     </header>
